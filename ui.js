@@ -1,4 +1,5 @@
 import { formatNumber } from "./utils.js";
+import { getGoldCount, getGoldPerSecond, getTotalClicks, getTotalGoldEarned, getLegacyStart, getBuildingsOwned, getGoldPerClick, getGoldEarnedClicking, getProgressClicks, getClickGoal } from "./gameState.js";
 
 // ui.js
 let activePanel = null;
@@ -46,6 +47,9 @@ function makePanelDraggable(panel) {
 document.querySelectorAll('.panel').forEach(makePanelDraggable);
 
 export function updateGoldCounter() {
+  const goldCount = getGoldCount();
+  const goldPerSecond = getGoldPerSecond();
+
   const goldCountFormatted = formatNumber(goldCount)
   document.getElementById('gold-counter').innerText = `Gold: ${goldCountFormatted}`;
 
@@ -54,13 +58,13 @@ export function updateGoldCounter() {
 }
 
 export function updateStats() {
-  document.getElementById('total-clicks').innerText = totalClicks;
-  const totalGoldEarnedFormatted = formatNumber(totalGoldEarned);
+  document.getElementById('total-clicks').innerText = getTotalClicks();
+  const totalGoldEarnedFormatted = formatNumber(getTotalGoldEarned());  
   document.getElementById('total-gold-earned').innerText = totalGoldEarnedFormatted;
-  document.getElementById('legacy-start').innerText = timeSince(legacyStart);
-  document.getElementById('buildings-owned').innerText = buildingsOwned;
-  document.getElementById('gold-per-click').innerText = goldPerClick;
-  const goldEarnedClickingFormatted = formatNumber(goldEarnedClicking);
+  document.getElementById('legacy-start').innerText = timeSince(getLegacyStart());
+  document.getElementById('buildings-owned').innerText = getBuildingsOwned();
+  document.getElementById('gold-per-click').innerText = getGoldPerClick();
+  const goldEarnedClickingFormatted = formatNumber(getGoldEarnedClicking());
   document.getElementById('gold-earned-clicking').innerText = goldEarnedClickingFormatted;
 }
 
@@ -81,10 +85,12 @@ function timeSince(date) {
 export function updateProgressBar() {
   const progressBar = document.getElementById('progress-bar');
   const claimButton = document.getElementById('claim-button');
-  const progressPercentage = (progressClicks / clickGoal) * 100;
+  
+  
+  const progressPercentage = (getProgressClicks() / getClickGoal()) * 100;
   progressBar.style.width = `${progressPercentage}%`;
 
-  if (progressClicks >= clickGoal) {
+  if (getProgressClicks() >= getClickGoal()) {
     progressBar.style.display = 'none';
     claimButton.style.display = 'block';
   }

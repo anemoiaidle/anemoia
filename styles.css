@@ -201,16 +201,62 @@ body {
    box-shadow: inset -1px -1px 0 var(--button-shadow), inset 1px 1px 0 var(--button-highlight);
 }
 
-.building-container {
-   display: flex;
-   align-items: center;
+.building-button {
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+    position: relative;
 }
 
+.building-button h3 {
+    font-size: 24px;
+    margin: 0;
+}
+
+.building-button p {
+    margin: 0;
+}
+
+.building-button img {
+    width: 70px;
+    height: 70px;
+}
+
+
 .building-count {
-   font-size: 14px;
-   margin-right: 5px;
-   width: 10px;
-   text-align: right;
+   font-size: 1.6em;
+   margin-left: auto;
+   margin-right: 10px;
+}
+
+.building--cost-container {
+    display: flex;
+    align-items: center;
+}
+
+.building--cost-container img{
+    height: 35px;
+    width: 35px;
+}
+
+.building--cost-container p {
+    font-size: 1.2em;
+}
+
+.building-tooltip {
+    display: none;
+    position: absolute;
+    height: 100px;
+    width: 300px;
+    background-color: #1a1919;
+    border: 3px solid #6591ca;
+    border-radius: 15px;
+    z-index: 1000;
+    color: #fff;
+}
+
+.building-tooltip.visible {
+    display: block;
 }
 
 /* Side Buttons */

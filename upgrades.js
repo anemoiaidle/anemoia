@@ -1,3 +1,6 @@
+import { getGoldCount, setGoldCount } from "./gameState.js";
+import { buildingData, updateGoldPerSecond } from "./buildings.js";
+import { updateGoldCounter, updateStats } from "./ui.js";
 // upgrades.js
 const upgradeData = {
     'increase-settlershack-income': {
@@ -23,16 +26,17 @@ const upgradeData = {
     }
   };
   
-  function purchaseUpgrade(upgradeId) {
+  export function purchaseUpgrade(upgradeId) {
     const upgrade = upgradeData[upgradeId];
-    if (goldCount >= upgrade.cost && !upgrade.purchased) {
-      goldCount -= upgrade.cost;
+    if (getGoldCount() >= upgrade.cost && !upgrade.purchased) {
+      const currentColdCount = getGoldCount() - upgrade.cost
+      setGoldCount(currentColdCount)
       upgrade.purchased = true;
       if (upgrade.type === 'building') {
         buildingData[upgrade.building].incomeMultiplier *= upgrade.multiplier;
       } else if (upgrade.type === 'total') {
-        for (let building in buildingData) {
-          buildingData[building].incomeMultiplier *= upgrade.multiplier;
+        for (let buildingKey in buildingData) {
+          buildingData[buildingKey].incomeMultiplier *= upgrade.multiplier;
         }
       }
       updateGoldPerSecond();

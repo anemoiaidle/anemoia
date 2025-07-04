@@ -1,13 +1,19 @@
 import { updateGoldCounter, updateStats, updateProgressBar } from './ui.js'
+import { getLastUpdate, setLastUpdate, getGoldPerSecond, getGoldCount, setGoldCount, getTotalGoldEarned, setTotalGoldEarned, getIsHidden } from './gameState.js';
+
 // gameLoop.js
 function gameLoop() {
     let now = Date.now();
-    let delta = (now - lastUpdate) / 1000;
-    lastUpdate = now;
+    let delta = (now - getLastUpdate()) / 1000;
+    setLastUpdate(now);
   
-    const generatedGold = goldPerSecond * delta;
-    goldCount += generatedGold;
-    totalGoldEarned += generatedGold;
+    const generatedGold = getGoldPerSecond() * delta;
+
+    const newGoldCount = getGoldCount() + generatedGold;
+    setGoldCount(newGoldCount);
+
+    const newTotalGoldEarned = getTotalGoldEarned() + generatedGold;
+    setTotalGoldEarned(newTotalGoldEarned)
   
     // Generate EXP from passive gold
     exp += generatedGold * 0.01;
@@ -17,7 +23,7 @@ function gameLoop() {
     updateStats();
     updateProgressBar();
   
-    if (!isHidden) {
+    if (!getIsHidden()) {
       requestAnimationFrame(gameLoop);
     }
   }

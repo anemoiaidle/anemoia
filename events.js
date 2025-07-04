@@ -1,6 +1,8 @@
 import { generateBuildingButtons, updateBuildingButtons, updateBuildingCounts } from "./buildings.js";
 import { updateGoldCounter, updateStats, updateProgressBar } from "./ui.js"
 import { startGame } from "./gameLoop.js";
+import { getGoldCount, setGoldCount, getGoldPerClick, incrementTotalClicks, incrementProgressClicks, setProgressClicks, getGoldEarnedClicking, setGoldEarnedClicking, getTotalGoldEarned, setTotalGoldEarned, getGoldPerSecond } from "./gameState.js";
+import { purchaseUpgrade } from "./upgrades.js"
 
 // events.js
 
@@ -24,19 +26,25 @@ document.addEventListener('keydown', function(event) {
 // Gold button click event
 const goldButton = document.getElementById('gold-button');
 goldButton.addEventListener('click', (e) => {
-  goldCount += goldPerClick;
-  totalClicks++;
-  progressClicks++;
-  goldEarnedClicking += goldPerClick;
-  totalGoldEarned += goldPerClick;
-  exp += goldPerClick * 0.333;
+  const newGoldCount = getGoldCount() + getGoldPerClick();
+  setGoldCount(newGoldCount)
+
+  incrementTotalClicks();
+  incrementProgressClicks();
+  
+  const newGoldEarnedClicking = getGoldEarnedClicking() + getGoldPerClick();
+  setGoldEarnedClicking(newGoldEarnedClicking);
+
+  const newTotalGoldEarned = getTotalGoldEarned() + getGoldPerClick();
+  setTotalGoldEarned(newTotalGoldEarned);
+  exp += getGoldPerClick() * 0.333;
   updateGoldCounter();
   updateStats();
   updateExpBar();
   updateProgressBar();
 
   const floatText = document.createElement('span');
-  floatText.textContent = `+${goldPerClick}`;
+  floatText.textContent = `+${getGoldPerClick()}`;
   floatText.className = 'floating-plus';
   floatText.style.left = `${e.pageX + 5}px`;
   floatText.style.top = `${e.pageY - 20}px`;
@@ -58,13 +66,16 @@ document.getElementById('claim-button').addEventListener('click', claimReward);
 function claimReward() {
   const claimButton = document.getElementById('claim-button');
   const progressBar = document.getElementById('progress-bar');
-  const rewardGold = goldPerSecond * 60;
-  goldCount += rewardGold;
-  totalGoldEarned += rewardGold;
+  const rewardGold = getGoldPerSecond() * 60;
+  const currentGoldCount = getGoldCount() + rewardGold;
+  setGoldCount(currentGoldCount);
+
+  const currentTotalCount = getTotalGoldEarned() + rewardGold;
+  setTotalGoldEarned(currentTotalCount)
   exp += rewardGold * 0.333;
   claimButton.style.display = 'none';
   progressBar.style.display = 'block';
-  progressClicks = 0;
+  setProgressClicks(0);
   updateGoldCounter();
   updateStats();
   updateExpBar();
