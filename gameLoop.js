@@ -1,3 +1,4 @@
+import { updateGoldCounter, updateStats, updateProgressBar } from './ui.js'
 // gameLoop.js
 function gameLoop() {
     let now = Date.now();
@@ -45,7 +46,7 @@ function gameLoop() {
     }
   }
   
-  function startGame() {
+  export function startGame() {
     requestAnimationFrame(gameLoop);
   }
   

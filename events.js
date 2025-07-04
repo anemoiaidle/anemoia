@@ -1,3 +1,7 @@
+import { generateBuildingButtons, updateBuildingButtons, updateBuildingCounts } from "./buildings.js";
+import { updateGoldCounter, updateStats, updateProgressBar } from "./ui.js"
+import { startGame } from "./gameLoop.js";
+
 // events.js
 
 // Panel toggle events

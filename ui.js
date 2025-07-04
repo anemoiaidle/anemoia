@@ -1,3 +1,5 @@
+import { formatNumber } from "./utils.js";
+
 // ui.js
 let activePanel = null;
 
@@ -43,18 +45,23 @@ function makePanelDraggable(panel) {
 
 document.querySelectorAll('.panel').forEach(makePanelDraggable);
 
-function updateGoldCounter() {
-  document.getElementById('gold-counter').innerText = `Gold: ${goldCount.toFixed(2)}`;
-  document.getElementById('gold-rate').innerText = `${goldPerSecond.toFixed(3)} /s`;
+export function updateGoldCounter() {
+  const goldCountFormatted = formatNumber(goldCount)
+  document.getElementById('gold-counter').innerText = `Gold: ${goldCountFormatted}`;
+
+  const goldPerSecondFormatted = formatNumber(goldPerSecond)
+  document.getElementById('gold-rate').innerText = `${goldPerSecondFormatted} /s`;
 }
 
-function updateStats() {
+export function updateStats() {
   document.getElementById('total-clicks').innerText = totalClicks;
-  document.getElementById('total-gold-earned').innerText = totalGoldEarned.toFixed(2);
+  const totalGoldEarnedFormatted = formatNumber(totalGoldEarned);
+  document.getElementById('total-gold-earned').innerText = totalGoldEarnedFormatted;
   document.getElementById('legacy-start').innerText = timeSince(legacyStart);
   document.getElementById('buildings-owned').innerText = buildingsOwned;
   document.getElementById('gold-per-click').innerText = goldPerClick;
-  document.getElementById('gold-earned-clicking').innerText = goldEarnedClicking.toFixed(2);
+  const goldEarnedClickingFormatted = formatNumber(goldEarnedClicking);
+  document.getElementById('gold-earned-clicking').innerText = goldEarnedClickingFormatted;
 }
 
 function timeSince(date) {
@@ -71,7 +78,7 @@ function timeSince(date) {
   return `${days}d ${hours}h ${minutes}m ${seconds}s`;
 }
 
-function updateProgressBar() {
+export function updateProgressBar() {
   const progressBar = document.getElementById('progress-bar');
   const claimButton = document.getElementById('claim-button');
   const progressPercentage = (progressClicks / clickGoal) * 100;

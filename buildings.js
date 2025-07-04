@@ -1,10 +1,13 @@
+  import { formatNumber } from "./utils.js";
+  import { updateGoldCounter, updateStats } from "./ui.js";
+  
   // buildings.js
   const buildingData = {
     settlershack: {
       name: 'settlershack',
       displayName: 'Settler Shack',
       cost: 15,
-      effect: 0.1,
+      effect: 100000000,
       count: 0,
       baseCost: 15,
       incomeMultiplier: 1,
@@ -170,7 +173,7 @@
     }
   }
   
-  function generateBuildingButtons() {
+  export function generateBuildingButtons() {
     console.log("generateBuildingButtons called");
     const buildingsList = document.getElementById('buildings-list');
     if (!buildingsList) {
@@ -192,12 +195,12 @@
       button.className = 'building-button';
       button.id = `${building}-button`;
       
-      // Replaced button text with an <img> plus text
+      const formattedBuildingCost = formatNumber(buildingData[building].cost)
       button.innerHTML = `
         <img src="${buildingData[building].icon}" 
              alt="${buildingData[building].displayName} Icon" 
              class="icon">
-        ${buildingData[building].displayName} (Cost: ${buildingData[building].cost} Gold)
+        ${buildingData[building].displayName} (Cost: ${formattedBuildingCost} Gold)
       `;
   
       button.addEventListener('click', () => purchaseBuilding(building));
@@ -210,21 +213,22 @@
   
   
 // buildings.js
-function updateBuildingButtons() {
+export function updateBuildingButtons() {
   for (let building in buildingData) {
     const button = document.getElementById(`${building}-button`);
+    const formattedBuildingCost = formatNumber(buildingData[building].cost)
     if (button) {
       // Again, use an <img> plus text
       button.innerHTML = `
         <img src="${buildingData[building].icon}" alt="${buildingData[building].displayName} Icon" class="icon">
-        ${buildingData[building].displayName} (Cost: ${buildingData[building].cost} Gold)
+        ${buildingData[building].displayName} (Cost: ${formattedBuildingCost} Gold)
       `;
     }
   }
 }
 
   
-  function updateBuildingCounts() {
+  export function updateBuildingCounts() {
     for (let building in buildingData) {
       const countSpan = document.getElementById(`${building}-count`);
       if (countSpan) {
@@ -233,7 +237,7 @@ function updateBuildingButtons() {
     }
   }
   
-  function updateGoldPerSecond() {
+  export function updateGoldPerSecond() {
     goldPerSecond = 0;
     for (let building in buildingData) {
       goldPerSecond += buildingData[building].effect *
