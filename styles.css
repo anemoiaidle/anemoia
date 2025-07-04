@@ -1,311 +1,360 @@
 /* Windows 98 Color Scheme */
 :root {
-    --background: #C0C0C0;
-    --button-face: #DFDFDF;
-    --button-shadow: #808080;
-    --button-highlight: #FFFFFF;
-    --button-text: #000000;
-    --window: #FFFFFF;
-    --window-text: #000000;
-    --window-frame: #000080;
-    --progress-bar: #000080;
+   --background: #c0c0c0;
+   --button-face: #dfdfdf;
+   --button-shadow: #808080;
+   --button-highlight: #ffffff;
+   --button-text: #000000;
+   --window: #ffffff;
+   --window-text: #000000;
+   --window-frame: #000080;
+   --progress-bar: #000080;
 }
 
 /* Body Styles */
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Roboto Mono', monospace;
-    background-color: var(--background);
-    color: var(--window-text);
+   margin: 0;
+   padding: 0;
+   font-family: 'Roboto Mono', monospace;
+   background-color: var(--background);
+   color: var(--window-text);
 
-       /* New background */
-       background-image: url("images/background.png"); 
-       background-size: cover;      /* Make it fill the screen */
-       background-position: center; /* Center it */
-       background-repeat: no-repeat; 
+   /* New background */
+   background-image: url('images/background.png');
+   background-size: cover; /* Make it fill the screen */
+   background-position: center; /* Center it */
+   background-repeat: no-repeat;
 }
 
 /* Main Window */
 .window {
-    width: 95%;
-    max-width: 1600px;
-    margin: 20px auto;
-    border: 2px solid var(--button-shadow);
-    box-shadow: inset -1px -1px 0 var(--button-shadow), inset 1px 1px 0 var(--button-highlight);
+   width: 95%;
+   max-width: 1600px;
+   margin: 20px auto;
+   border: 2px solid var(--button-shadow);
+   box-shadow: inset -1px -1px 0 var(--button-shadow), inset 1px 1px 0 var(--button-highlight);
 }
 
 /* Title Bar */
 .title-bar {
-    background-color: var(--window-frame);
-    color: #FFFFFF;
-    padding: 4px 8px;
-    display: flex;
-    align-items: center;
-    font-weight: bold;
+   background-color: var(--window-frame);
+   color: #ffffff;
+   padding: 4px 8px;
+   display: flex;
+   align-items: center;
+   font-weight: bold;
 }
 
 /* Window Body */
 .window-body {
-    padding: 10px;
-    background-color: var(--window);
-    background-color: rgba(255, 255, 255, 0.1); /* 10% opacity white */
-    box-shadow: inset -1px -1px 0 var(--button-highlight), inset 1px 1px 0 var(--button-shadow);
+   padding: 10px;
+   background-color: var(--window);
+   background-color: rgba(255, 255, 255, 0.1); /* 10% opacity white */
+   box-shadow: inset -1px -1px 0 var(--button-highlight), inset 1px 1px 0 var(--button-shadow);
 }
 
 /* Stats Section */
 .stats {
-    background-color: var(--button-face);
-    border: 2px solid var(--button-shadow);
-    padding: 10px;
-    margin-bottom: 10px;
-    box-shadow: inset -1px -1px 0 var(--button-highlight), inset 1px 1px 0 var(--button-shadow);
+   background-color: var(--button-face);
+   border: 2px solid var(--button-shadow);
+   padding: 10px;
+   margin-bottom: 10px;
+   box-shadow: inset -1px -1px 0 var(--button-highlight), inset 1px 1px 0 var(--button-shadow);
 }
 
 .stats h2 {
-    margin-top: 0;
-    font-size: 18px;
-    border-bottom: 1px solid var(--button-shadow);
-    padding-bottom: 4px;
+   margin-top: 0;
+   font-size: 18px;
+   border-bottom: 1px solid var(--button-shadow);
+   padding-bottom: 4px;
 }
 
 .stats p {
-    margin: 5px 0;
-    font-size: 14px;
+   margin: 5px 0;
+   font-size: 14px;
 }
 
 /* Population Counter */
 #population-counter {
-    font-size: 16px;
-    margin-bottom: 10px;
+   font-size: 16px;
+   margin-bottom: 10px;
 }
 
 /* Buttons Section */
 .buttons {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 10px;
+   display: flex;
+   justify-content: center;
+   margin-bottom: 10px;
 }
 
 .gold-section {
-    text-align: center;
-    background-color: var(--button-face);
-    background-color: rgba(255, 255, 255, 0.2); /* 60% opacity white */
-    border: 2px solid var(--button-shadow);
-    padding: 4px;
-    box-shadow: inset -1px -1px 0 var(--button-highlight), inset 1px 1px 0 var(--button-shadow);
-    width: 100%;
-    max-width: 600px;
+   text-align: center;
+   background-color: var(--button-face);
+   background-color: rgba(255, 255, 255, 0.2); /* 60% opacity white */
+   border: 2px solid var(--button-shadow);
+   padding: 4px;
+   box-shadow: inset -1px -1px 0 var(--button-highlight), inset 1px 1px 0 var(--button-shadow);
+   width: 100%;
+   max-width: 600px;
 }
 
 #gold-button {
-    background-color: transparent; /* Remove default background */
-    border: none;                 /* Remove border if you just want the image */
-    cursor: pointer;             /* Keep pointer cursor */
-  }  
-
-#gold-button:active {
-    box-shadow: inset -1px -1px 0 var(--button-shadow), inset 1px 1px 0 var(--button-highlight);
+   background-color: transparent; /* Remove default background */
+   border: none; /* Remove border if you just want the image */
+   cursor: pointer; /* Keep pointer cursor */
+   transition: transform 0.1s ease; 
 }
 
+#gold-button img {
+    width: 100px;
+    height: 100px;
+}
+
+#gold-button:hover {
+    transform: scale(1.1);
+}
+
+.gold-button-press {
+  animation: pressPop 0.2s ease;
+}
+
+
 .counter {
-    font-size: 16px;
-    margin: 5px 0;
+   font-size: 16px;
+   margin: 5px 0;
 }
 
 /* Progress Bar */
 .progress-container {
-    background-color: var(--button-face);
-    border: 2px solid var(--button-shadow);
-    height: 20px;
-    margin-top: 10px;
-    position: relative;
-    box-shadow: inset -1px -1px 0 var(--button-highlight), inset 1px 1px 0 var(--button-shadow);
-    border-radius: 5px; /* Rounded corners */
-    overflow: hidden; /* To ensure inner elements are clipped */
+   background-color: var(--button-face);
+   border: 2px solid var(--button-shadow);
+   height: 20px;
+   margin-top: 10px;
+   position: relative;
+   box-shadow: inset -1px -1px 0 var(--button-highlight), inset 1px 1px 0 var(--button-shadow);
+   border-radius: 5px; /* Rounded corners */
+   overflow: hidden; /* To ensure inner elements are clipped */
 }
 
 .progress-bar {
-    background: linear-gradient(to right, #0000FF, #000080); /* Gradient for smoother look */
-    height: 100%;
-    width: 0;
-    border-radius: 5px; /* Match container's rounded corners */
-    transition: width 0.25s;
+   background: linear-gradient(to right, #0000ff, #000080); /* Gradient for smoother look */
+   height: 100%;
+   width: 0;
+   border-radius: 5px; /* Match container's rounded corners */
+   transition: width 0.3s ease;
 }
 
 #claim-button {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    background-color: var(--button-face);
-    color: var(--button-text);
-    border: none;
-    font-size: 16px;
-    display: none;
-    cursor: pointer;
-    width: 100%;
-    max-width: 600px; /* Adjusted width */
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   left: 0;
+   top: 0;
+   background-color: var(--button-face);
+   color: var(--button-text);
+   border: none;
+   font-size: 16px;
+   display: none;
+   cursor: pointer;
+   width: 100%;
+   max-width: 600px; /* Adjusted width */
 }
 
 #claim-button:active {
-    box-shadow: inset -1px -1px 0 var(--button-shadow), inset 1px 1px 0 var(--button-highlight);
+   box-shadow: inset -1px -1px 0 var(--button-shadow), inset 1px 1px 0 var(--button-highlight);
 }
 
 /* Buildings and Upgrades */
 .buildings-upgrades {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+   display: flex;
+   flex-wrap: wrap;
+   gap: 10px;
 }
 
 .section {
-    flex: 1 1 45%;
+   flex: 1 1 45%;
 }
 
 .section h2 {
-    font-size: 18px;
-    margin-top: 0;
-    border-bottom: 1px solid var(--button-shadow);
-    padding-bottom: 4px;
+   font-size: 18px;
+   margin-top: 0;
+   border-bottom: 1px solid var(--button-shadow);
+   padding-bottom: 4px;
 }
 
 .building-button,
 .section button {
-    width: 50%;
-    background-color: var(--button-face);
-    color: var(--button-text);
-    border: 2px solid var(--button-shadow);
-    padding: 2px;
-    margin: 4px 0;
-    font-size: 14px;
-    cursor: pointer;
-    text-align: left;
-    box-shadow: -1px -1px 0 var(--button-highlight), 1px 1px 0 var(--button-shadow);
+   width: 50%;
+   background-color: var(--button-face);
+   color: var(--button-text);
+   border: 2px solid var(--button-shadow);
+   padding: 2px;
+   margin: 4px 0;
+   font-size: 14px;
+   cursor: pointer;
+   text-align: left;
+   box-shadow: -1px -1px 0 var(--button-highlight), 1px 1px 0 var(--button-shadow);
 }
 
 .building-button:active,
 .section button:active {
-    box-shadow: inset -1px -1px 0 var(--button-shadow), inset 1px 1px 0 var(--button-highlight);
+   box-shadow: inset -1px -1px 0 var(--button-shadow), inset 1px 1px 0 var(--button-highlight);
 }
 
 .building-container {
-    display: flex;
-    align-items: center;
+   display: flex;
+   align-items: center;
 }
 
 .building-count {
-    font-size: 14px;
-    margin-right: 5px;
-    width: 10px;
-    text-align: right;
+   font-size: 14px;
+   margin-right: 5px;
+   width: 10px;
+   text-align: right;
 }
 
 /* Side Buttons */
 .side-buttons {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+   position: fixed;
+   top: 20px;
+   right: 20px;
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
 }
 
 .side-buttons button {
-    background-color: var(--button-face);
-    color: var(--button-text);
-    border: 2px solid var(--button-shadow);
-    padding: 5px 10px;
-    cursor: pointer;
-    box-shadow: -1px -1px 0 var(--button-highlight), 1px 1px 0 var(--button-shadow);
+   background-color: var(--button-face);
+   color: var(--button-text);
+   border: 2px solid var(--button-shadow);
+   padding: 5px 10px;
+   cursor: pointer;
+   box-shadow: -1px -1px 0 var(--button-highlight), 1px 1px 0 var(--button-shadow);
 }
 
 .side-buttons button:active {
-    box-shadow: inset -1px -1px 0 var(--button-shadow), inset 1px 1px 0 var(--button-highlight);
+   box-shadow: inset -1px -1px 0 var(--button-shadow), inset 1px 1px 0 var(--button-highlight);
 }
 
 /* Panels */
 .panel {
-    position: fixed;
-    top: 100px;
-    left: calc(50% - 150px);
-    width: 300px;
-    height: 400px;
-    background-color: var(--window);
-    color: var(--window-text);
-    border: 2px solid var(--button-shadow);
-    display: none;
-    padding: 10px;
-    z-index: 1000;
-    box-shadow: inset -1px -1px 0 var(--button-highlight), inset 1px 1px 0 var(--button-shadow);
+   position: fixed;
+   top: 100px;
+   left: calc(50% - 150px);
+   width: 300px;
+   height: 400px;
+   background-color: var(--window);
+   color: var(--window-text);
+   border: 2px solid var(--button-shadow);
+   display: none;
+   padding: 10px;
+   z-index: 1000;
+   box-shadow: inset -1px -1px 0 var(--button-highlight), inset 1px 1px 0 var(--button-shadow);
 }
 
 .panel h3 {
-    margin-top: 0;
-    font-size: 16px;
-    border-bottom: 1px solid var(--button-shadow);
-    padding-bottom: 4px;
-    cursor: move;
+   margin-top: 0;
+   font-size: 16px;
+   border-bottom: 1px solid var(--button-shadow);
+   padding-bottom: 4px;
+   cursor: move;
 }
 
 /* Active Panel */
 .panel.active {
-    display: block;
+   display: block;
 }
 
 /* EXP Bar */
 #exp-container {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: var(--button-face);
-    border-top: 2px solid var(--button-shadow);
-    height: 25px;
-    display: flex;
-    align-items: center;
-    box-shadow: inset -1px -1px 0 var(--button-highlight), inset 1px 1px 0 var(--button-shadow);
-    overflow: hidden;
+   position: fixed;
+   bottom: 0;
+   left: 0;
+   width: 100%;
+   background-color: var(--button-face);
+   border-top: 2px solid var(--button-shadow);
+   height: 25px;
+   display: flex;
+   align-items: center;
+   box-shadow: inset -1px -1px 0 var(--button-highlight), inset 1px 1px 0 var(--button-shadow);
+   overflow: hidden;
 }
 
 #exp-bar {
-    background: linear-gradient(to right, #0000FF, #000080); /* Gradient for smoother look */
-    height: 100%;
-    width: 0;
-    border-radius: 0; /* No rounding for EXP bar to match Windows 98 style */
-    transition: width 0.25s;
+   background: linear-gradient(to right, #0000ff, #000080); /* Gradient for smoother look */
+   height: 100%;
+   width: 0;
+   border-radius: 0; /* No rounding for EXP bar to match Windows 98 style */
+   transition: width 0.25s;
 }
 
 #exp-info {
-    position: absolute;
-    width: 100%;
-    text-align: center;
-    color: var(--window-text);
-    font-size: 12px;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 10px;
+   position: absolute;
+   width: 100%;
+   text-align: center;
+   color: var(--window-text);
+   font-size: 12px;
+   display: flex;
+   justify-content: space-between;
+   padding: 0 10px;
 }
 
 #exp-text,
 #level-text {
-    flex: 1;
+   flex: 1;
 }
 
 #exp-text {
-    text-align: left;
+   text-align: left;
 }
 
 #level-text {
-    text-align: right;
+   text-align: right;
 }
 
 /* Added a small icon class */
 .icon {
-    width: 64px;
-    height: 64px;
-    vertical-align: middle;
-    margin-right: 4px;
+   width: 64px;
+   height: 64px;
+   vertical-align: middle;
+   margin-right: 4px;
+}
+
+.floating-plus {
+    position: absolute;
+    font-size: 20px;
+    font-weight: 800;
+    color: #ffffff;
+    animation: floatUp 3s ease-out forwards;
+    pointer-events: none;
+    z-index: 999;
+    text-shadow:
+    -1px -1px 0 black,
+     1px -1px 0 black,
+    -1px  1px 0 black,
+     1px  1px 0 black;
+}
+
+@keyframes floatUp {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-200px);
+    }
+}
+
+@keyframes pressPop {
+  0% {
+    transform: scale(1);
   }
-  
+  30% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

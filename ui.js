@@ -89,3 +89,4 @@ export function updateProgressBar() {
     claimButton.style.display = 'block';
   }
 }
+

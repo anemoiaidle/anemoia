@@ -22,7 +22,8 @@ document.addEventListener('keydown', function(event) {
 });
 
 // Gold button click event
-document.getElementById('gold-button').addEventListener('click', () => {
+const goldButton = document.getElementById('gold-button');
+goldButton.addEventListener('click', (e) => {
   goldCount += goldPerClick;
   totalClicks++;
   progressClicks++;
@@ -33,6 +34,22 @@ document.getElementById('gold-button').addEventListener('click', () => {
   updateStats();
   updateExpBar();
   updateProgressBar();
+
+  const floatText = document.createElement('span');
+  floatText.textContent = `+${goldPerClick}`;
+  floatText.className = 'floating-plus';
+  floatText.style.left = `${e.pageX + 5}px`;
+  floatText.style.top = `${e.pageY - 20}px`;
+  document.body.appendChild(floatText);
+
+  setTimeout(() => {
+    floatText.remove();
+  }, 1000);
+
+  goldButton.classList.add('gold-button-press');
+  setTimeout(() => {
+    goldButton.classList.remove('gold-button-press');
+  }, 200);
 });
 
 // Claim reward event
