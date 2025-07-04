@@ -17,7 +17,7 @@
       effect: 1,
       count: 0,
       baseCost: 125,
-      incomeMultiplier: 1,
+      incomeMultiplier: 3,
       icon: 'images/lumberyard.png'
     },
     farm: {
