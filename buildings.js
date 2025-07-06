@@ -8,7 +8,7 @@ export const buildingData = {
       name: 'settlershack',
       displayName: 'Settler Shack',
       cost: 15,
-      effect: 10000000,
+      effect: 0.1,
       count: 0,
       baseCost: 15,
       incomeMultiplier: 1,
