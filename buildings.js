@@ -1,6 +1,6 @@
 import { formatNumber } from './utils.js';
 import { updateGoldCounter, updateStats } from './ui.js';
-import { getGoldCount, setGoldCount, incrementBuildingsOwned, setGoldPerSecond } from './gameState.js';
+import { getGoldCount, setGoldCount, incrementBuildingsOwned, setGoldPerSecond, getGoldPerSecond } from './gameState.js';
 
 // buildings.js
 export const buildingData = {
@@ -8,7 +8,7 @@ export const buildingData = {
       name: 'settlershack',
       displayName: 'Settler Shack',
       cost: 15,
-      effect: 100,
+      effect: 10000000,
       count: 0,
       baseCost: 15,
       incomeMultiplier: 1,
@@ -156,7 +156,7 @@ export const buildingData = {
    },
 };
 
-function purchaseBuilding(building) {
+function purchaseBuilding(building, btnElement) {
    if (getGoldCount() >= buildingData[building].cost) {
 		const currentGoldCount = getGoldCount() - buildingData[building].cost;
 		console.log(currentGoldCount);
@@ -173,10 +173,17 @@ function purchaseBuilding(building) {
       updateBuildingCounts();
       updateStats();
 
-		const activeHoverP = document.querySelector('.building-tooltip.visible > p')
+      const activeHoverEl = document.querySelector('.building-tooltip.visible')
+
+		const gdsP = activeHoverEl.querySelector('.gds');
 		const gps = buildingData[building].count * buildingData[building].effect * buildingData[building].incomeMultiplier;
-		activeHoverP.textContent = `Gold per second: ${gps}`;
-		
+		gdsP.textContent = `Gold per second: ${gps.toFixed(2)}`;
+
+
+      const pctP = activeHoverEl.querySelector('.pct');
+      const totalColdPerSecond = getGoldPerSecond();
+      const pctOfGDS = (gps / totalColdPerSecond ) * 100;
+      pctP.textContent = `% of Total Gold/s: ${pctOfGDS.toFixed(2)}%`
    }
 }
 
@@ -232,7 +239,7 @@ export function generateBuildingButtons() {
       button.appendChild(buildingDataDiv);
 		button.appendChild(buildingCount);
 
-      button.addEventListener('click', () => purchaseBuilding(building));
+      button.addEventListener('click', () => purchaseBuilding(building, button));
 
       container.appendChild(button);
       buildingsList.appendChild(container);
@@ -242,9 +249,15 @@ export function generateBuildingButtons() {
 		buildingTooltip.classList.add('building-tooltip')
 
 		const gpsParagraph = document.createElement('p');
+      gpsParagraph.classList.add('gds');
+
+      
 		
+      const pctParagraph = document.createElement('p');
+      pctParagraph.classList.add('pct');
 		
 		buildingTooltip.appendChild(gpsParagraph);
+      buildingTooltip.appendChild(pctParagraph);
 
 		document.body.append(buildingTooltip);
 
@@ -258,9 +271,16 @@ export function generateBuildingButtons() {
 			buildingTooltip.style.top = `${e.pageY - tooltipHeight - offsetY}px`; 
 
 			const gps = buildingData[building].count * buildingData[building].effect * buildingData[building].incomeMultiplier;
-			gpsParagraph.textContent = `Gold per second: ${gps}`;
+			gpsParagraph.textContent = `Gold per second: ${gps.toFixed(2)}`;
 
+         const totalGoldPerSecond = getGoldPerSecond();
+         let pctOfGDS = (gps / totalGoldPerSecond ) * 100;
 
+         if (isNaN(pctOfGDS.toFixed(2))) {
+            pctOfGDS = 0;
+         }
+
+         pctParagraph.textContent = `% of Total Gold/s: ${pctOfGDS.toFixed(2)}%`
 		});
 
 		button.addEventListener('mousemove', (e) => {

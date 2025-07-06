@@ -21,5 +21,43 @@ function levelUp() {
   level++;
   expToNextLevel *= 1.5;
   updateExpBar();
-  alert(`Congratulations! You've reached Level ${level}!`);
+
+  const notificationSection = document.querySelector('.notification-section');
+
+  const levelUpDiv = document.createElement('div');
+  levelUpDiv.classList.add('notification');
+
+  const notificationHeader = document.createElement('div');
+  notificationHeader.classList.add('notification-header');
+
+  const icon = document.createElement('span');
+  icon.classList.add('material-symbols-outlined');
+  icon.textContent = 'award_star';
+
+  const textNode = document.createTextNode(' LEVEL UP! ');
+  notificationHeader.appendChild(icon);
+  notificationHeader.appendChild(textNode);
+
+  const notificationDesc = document.createElement('div');
+  notificationDesc.classList.add('notification-description')
+
+  const notifText = document.createElement('span');
+  notifText.textContent = `You've reached Level ${level}.`;
+
+  notificationDesc.appendChild(notifText);
+
+  levelUpDiv.appendChild(notificationHeader);
+  levelUpDiv.appendChild(notificationDesc);
+
+  notificationSection.appendChild(levelUpDiv)
+
+  levelUpDiv.addEventListener('click', () => {
+    levelUpDiv.remove();
+  })
+
+  const currentNotifications = notificationSection.querySelectorAll('.notification');
+  if (currentNotifications.length > 5) {
+    currentNotifications[0].remove(); // Remove the oldest (first)
+  }
 }
+
